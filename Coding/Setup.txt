@@ -1,0 +1,61 @@
+requirement
+JDK-14.0.2 => https://www.oracle.com/java/technologies/javase-jdk14-downloads.html
+Apache maven 3.6.3 => https://maven.apache.org/install.html
+postgres 12.3 => https://www.postgresql.org/download/windows/
+node 12.18.2  => https://phoenixnap.com/kb/install-node-js-npm-on-windows
+
+==============================================================================================================================================================================
+
+//database setup
+
+1.Download the ZIP file from https://www.enterprisedb.com/products-services-training/pgbindownload
+
+2.Unzip the archive into a directory of your choice (the archive is created such that unzipping it, it will create a directory pgsql with everything else below that)
+
+3.Run initdb (this can be found in the subdirectory pgsql\bin)
+
+initdb -D c:\Users\pradeep\pgdata -U postgres -W -E UTF8 -A scram-sha-256
+directory path : c:\Users\pradeep\ 
+new folder name : pgdata
+
+This will create the postgres "data directory" (aka the "cluster") in c:\Users\pradeep\pgdata. You need to make sure that the user running this command has full read/write privileges on that directory.
+
+-U postgres creates the superuser as postgres, -W will prompt you for the password of the superuser, -E UTF8 will create the database with UTF-8 encoding and -A scram-sha-256 enables the password authentication.
+
+please enter password: postgres (as we are using same password in spring boot app)
+
+
+4. To start Postgres, run:
+
+pg_ctl -D c:\Users\pradeep\pgdata -l logfile start
+
+5.To shutdown Postgres, run:
+
+pg_ctl -D c:\Users\Arthur\pgdata stop
+
+================================================================================================================================================================================
+Please first check the database name and password is 'postgres' and 'postgres' respectively
+//Build and run BE
+
+unzip the coding folder
+
+1. Open CMD and change directory to codingChallenge folder(cd --/--/codingChallenge)
+2. mvn clean install
+3. mvn exec:java -Dexec.mainClass=com.pradeep.codingChallenge.CodingChallengeApplication // this will start the application on localhost:8081
+
+After running application will create tables automatically.
+and insert default data
+
+=================================================================================================================================================================================
+
+//Build and Run FE
+
+
+1. Open new CMD and change directory to coding-challenge-fe folder(cd --/--/coding-challenge-fe)
+2. npm install
+3. npm start
+
+this will start application on 3000.
+
+==================================================================================================================================================================================
+ 
